@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h2>Totalizadores Collabra</h2>
+    <p>Total de jogadores com "corporation" no nome: {{ corporation_count_collabra }}</p>
+</div>
+
+<div>
+    <h2>Totalizadores Ustebra</h2>
+    <p>Total de jogadores com "corporation" no nome: {{ corporation_count_ustebra }}</p>
+</div>
+<h1>Highscores Collabra</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Nível</th>
+                <th>Título</th>
+                <th>Valor</th>
+                <th>Vocação</th>
+                <th>Mundo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for highscore_data in all_highscores.0 %}
+                {% for player in highscore_data.highscore_list %}
+                    {% if "corporation" in player.name|lower %}
+                        <tr>
+                            <td>{{ player.name }}</td>
+                            <td>{{ player.level }}</td>
+                            <td>{{ player.title }}</td>
+                            <td>{{ player.value }}</td>
+                            <td>{{ player.vocation }}</td>
+                            <td>{{ player.world }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Highscores Ustebra</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Nível</th>
+                <th>Título</th>
+                <th>Valor</th>
+                <th>Vocação</th>
+                <th>Mundo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for highscore_data in all_highscores.1 %}
+                {% for player in highscore_data.highscore_list %}
+                    {% if "corporation" in player.name|lower %}
+                        <tr>
+                            <td>{{ player.name }}</td>
+                            <td>{{ player.level }}</td>
+                            <td>{{ player.title }}</td>
+                            <td>{{ player.value }}</td>
+                            <td>{{ player.vocation }}</td>
+                            <td>{{ player.world }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

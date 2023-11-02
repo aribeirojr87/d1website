@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class="flex">
+            <div class="card" style="width: 50%;">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="card-title">Corporations em Collabra</h2>
+                </div>
+                <div class="card-body text-center">
+                    <h1>{{ corporation_count_collabra }}</h1>
+                </div>
+            </div>
+
+            <div class="card" style="width: 50%;">
+                <div class="card-header bg-success text-white">
+                    <h2 class="card-title">Corporations em Ustebra</h2>
+                </div>
+                <div class="card-body text-center">
+                    <h1>{{ corporation_count_ustebra }}</h1>
+                </div>
+            </div>
+        </div>
+    <div>
+        <div>
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="card-title">Highscores Corporations Collabra</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Nível</th>
+                                <th>Vocação</th>
+                                <th>Mundo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for highscore_data in all_highscores.0 %}
+                                {% for player in highscore_data.highscore_list %}
+                                    {% if "corporation" in player.name|lower %}
+                                        <tr>
+                                            <td>{{ player.name }}</td>
+                                            <td>{{ player.level }}</td>
+                                            <td>{{ player.vocation }}</td>
+                                            <td>{{ player.world }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h2 class="card-title">Highscores Corporations Ustebra</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Nível</th>
+                                <th>Vocação</th>
+                                <th>Mundo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for highscore_data in all_highscores.1 %}
+                                {% for player in highscore_data.highscore_list %}
+                                    {% if "corporation" in player.name|lower %}
+                                        <tr>
+                                            <td>{{ player.name }}</td>
+                                            <td>{{ player.level }}</td>
+                                            <td>{{ player.vocation }}</td>
+                                            <td>{{ player.world }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
